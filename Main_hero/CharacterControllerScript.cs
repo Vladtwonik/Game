@@ -29,12 +29,8 @@ public class CharacterControllerScript : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround); 
         anim.SetBool("Ground", isGrounded);
         anim.SetFloat("vSpeed", rb.velocity.y);
-        if (!isGrounded)
+        if (isGrounded == false)
         {
-            return;
-        }
-
-        if(Input.GetKeyDown(KeyCode.P) == false){
             return;
         }
         
@@ -52,17 +48,25 @@ public class CharacterControllerScript : MonoBehaviour
 
     private void Update()
     {
-        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+        if ((isGrounded == true) && Input.GetKeyDown(KeyCode.Space))
         {
             anim.SetBool("Ground", false);
             rb.AddForce(new Vector2(0, verticalImpulse), ForceMode2D.Impulse);
            // Perform();
         }
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
+        
+        if (Input.GetKeyDown(KeyCode.P)){
             anim.SetBool("Pain", true);
         }
+
+        if(Input.GetKeyDown(KeyCode.P) == false){
+            anim.SetBool("Pain", false);
+        }
+
+    }
+
+    public void Pain(){
+        
     }
     
     void Reflect()
