@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HP : MonoBehaviour
+public class Player : MonoBehaviour
 {
 
 	public float maxHealth = 100f;
@@ -15,6 +15,15 @@ public class HP : MonoBehaviour
     {
 		currentHealth = maxHealth;
 		healthBar.SetMaxHealth(maxHealth);
+    }
+
+    // Update is called once per frame
+    public void Update()
+    {
+		if (Input.GetKeyDown(KeyCode.P))
+		{
+			TakeDamage(3f);
+		}
     }
 
 	public void TakeDamage(float damage)
